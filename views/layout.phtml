@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title><?php if (!empty($title)): ?><?= $title ?><?php else: ?>H&eacute;bergement d'images<?php endif; ?> | Unixcorn Project</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.12.0/build/cssreset/cssreset-min.css" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Grand+Hotel" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css" href="/style.css?v=<?= option('version') ?>" />
+        
+	<!-- Favicon
+	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="images/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="images/manifest.json">
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<meta name="msapplication-TileColor" content="#603cba">
+	<meta name="msapplication-TileImage" content="images/mstile-144x144.png">
+	<meta name="msapplication-config" content="images/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+	
+	<!-- Piwik
+	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<script type="text/javascript">
+	var _paq = _paq || [];
+	_paq.push(["setDomains", ["*.unixcorn.org"]]);
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+	   var u="//stats.unixcorn.org/";
+	   _paq.push(['setTrackerUrl', u+'piwik.php']);
+	   _paq.push(['setSiteId', 3]);
+	   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	   g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	   })();
+	</script>
+	<noscript><p><img src="//stats.unixcorn.org/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+
+	<?php if (!empty($image)): ?>
+        <meta name="twitter:card" content="photo" />
+        <meta name="twitter:image:src" content="<?= option('host') ?>/image/<?= $image->slug ?>/medium.jpg" />
+        <?php endif; ?>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <div class="container">
+                    <div class="brand">
+		    	<a href="/"><img src="/logo.png?v=<?= option('version') ?>" /></a>
+		    </div>
+                    <ul class="navbar">
+                        <li><a class="btn" href="/upload"><i class="icon icon-cloud-upload"></i> Upload</a></li>
+                        <li><a href="/explore">Explorer</a></li>
+                        <?php if (!empty($_SESSION['user'])): ?>
+                        <li><a href="/user/<?= $_SESSION['user']->username ?>">Mes images</a></li>
+                        <li><a href="/logout">Déconnexion</a></li>
+                        <?php else: ?>
+                        <li><a href="/login">Connexion</a></li>
+                        <li><a href="/register">Inscription</a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="container">
+                    <?php foreach ($flash as $type => $message): ?>
+                        <div class="alert <?= $type ?>"><?= $message ?></div>
+                    <?php endforeach; ?>
+
+                    <?php if (!empty($title)): ?>
+                        <h2 class="title"><?= $title ?></h2>
+                    <?php endif; ?>
+
+                    <?= $content ?>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="container">
+                    <p><a target="_blank" href="http://pix.blizzart.net/">Pix v2.1</a>. Built with <a target="_blank" href="http://limonade-php.github.io/">Limonade</a>, <a target="_blank" href="http://redbeanphp.com/">RedBean</a>, <a target="_blank" href="http://phpimageworkshop.com/">Image Workshop</a> and <a target="_blank" href="https://github.com/indyarmy/jQuery.awesomeCloud.plugin/">awesomeCloud</a>. Icon made by <a target="_blank" href="http://www.flaticon.com/free-icon/image-quadrate_3949" title="Adam Whitcroft">Adam Whitcroft</a>.</p>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/1.1.7/ZeroClipboard.min.js"></script>
+        <script type="text/javascript" src="/jquery.awesomeCloud-0.2.min.js"></script>
+        <script type="text/javascript" src="/app.js?v=<?= option('version') ?>"></script>
+    </body>
+</html>

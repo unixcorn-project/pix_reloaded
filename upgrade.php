@@ -1,13 +1,12 @@
 <?php
 
 // CONFIG
+$DB_HOST = '127.0.0.1';
+$DB_NAME = 'upix';
+$DB_USER = 'upix';
+$DB_PASS = 'UnixcornPix';
 
-$DB_HOST = 'localhost';
-$DB_NAME = 'pix';
-$DB_USER = 'root';
-$DB_PASS = '';
-
-$DIR_DATA = '/path/to/pix/upload/original';
+$DIR_DATA = '/srv/htdocs/pix.unixcorn.org/pix/upload/original';
 
 // LOAD DEPENDENCIES
 
